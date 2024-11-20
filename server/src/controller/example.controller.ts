@@ -1,7 +1,7 @@
 import Elysia, { t } from "elysia"
 
 export const example = new Elysia()
-    .get("/", () => "Hello world", {
+    .get("/home", () => "Wowww", {
         detail: {
             tags: ['example'],
             summary: 'Get Hello world',
