@@ -6,6 +6,7 @@ import cors from "@elysiajs/cors"
 import { MongoDB } from "./configs/database.config"
 import { jwtConfig } from "./configs/jwt.config"
 import { AccountController } from "./controller/account.controller"
+import { UserController } from "./controller/user.controller"
 
 
 MongoDB.connect()
@@ -17,6 +18,7 @@ const app = new Elysia()
   .use(swaggerConfig)
   //.use(example)
   .use(AccountController)
+  .use(UserController)
   .listen({
     port: Bun.env.PORT || 8000,
     tls: tlsConfig

@@ -9,6 +9,24 @@ export const AccountController = new Elysia({
 })
     .use(jwtConfig)
     .use(AccountDto)
+    .post('/login', async ({ body, jwt, set }) => {
+        try {
+            const user = await AccountService.login(body)
+            const token = await jwt.sign({ id: user.id })
+            return { token, user }
+        } catch (error) {
+            set.status = 400 // Bad Request
+            if (error instanceof Error)
+                throw new Error(error.message)
+            set.status = 500 // Internal Server Error
+            throw new Error('Something went wrong, try again later')
+        }
+    }, {
+        datail: { summary: "Login" },
+        body: "login",
+        response: "user_and_token"
+
+    })
 
     .post('/register', async ({ body, set, jwt }) => {
         try {
@@ -16,15 +34,15 @@ export const AccountController = new Elysia({
             const token = await jwt.sign({ id: user.id })
             return { token, user }
         } catch (error) {
-            set.status = 400
+            set.status = 400 // Bad Request
             if (error instanceof Error)
                 throw new Error(error.message)
-            set.status = 500
+            set.status = 500 // Internal Server Error
             throw new Error('Something went wrong, try again later')
         }
     }, {
         body: "register",
-        response: "account",
+        response: "user_and_token",
         detail: {
             summary: "Creat new user"
         },
