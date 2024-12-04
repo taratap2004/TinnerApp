@@ -7,12 +7,19 @@ import { MongoDB } from "./configs/database.config"
 import { jwtConfig } from "./configs/jwt.config"
 import { AccountController } from "./controller/account.controller"
 import { UserController } from "./controller/user.controller"
+import staticPlugin from "@elysiajs/static"
+import { PhotoController } from "./controller/photo.controller"
 
 
 MongoDB.connect()
 
 
 const app = new Elysia()
+  .use(PhotoController)
+  .use(staticPlugin({
+    assets: "public/uploads",
+    prefix: "img"
+  }))
   .use(cors())
   .use(jwtConfig)
   .use(swaggerConfig)
@@ -29,4 +36,4 @@ const app = new Elysia()
 let protocol = 'http'
 if ('cert' in tlsConfig)
   protocol = 'https'
-console.log(`🦊 Elysia is running at ${protocol}://${app.server?.hostname}:${app.server?.port}`)
+console.log(`🤯🤯 Elysia is running at ${protocol}://${app.server?.hostname}:${app.server?.port}🤯🤯`)

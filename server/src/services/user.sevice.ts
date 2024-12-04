@@ -1,21 +1,41 @@
 import mongoose, { RootFilterQuery } from "mongoose"
-import { _updateProfile, user, userPagination } from "../types/user.type"
+import { _updateProfile, updateProfile, user, userPagination, userPaginator } from "../types/user.type"
 import { IUserDocument } from "../interfaces/user.interface"
 import { QueryHelper } from "../helpers/query.helper"
+import { User } from "../models/user.model"
+
+
 
 export const UserService = {
-    get: function (pagination: userPagination, user_id: string): Promise<userPagination> {
-    
+    get: async function (pagination: userPagination, user_id: string): Promise<userPaginator> {
+
         let filter: RootFilterQuery<IUserDocument> = {
             _id: { $nin: new mongoose.Types.ObjectId(user_id) },
             $and: QueryHelper.parseUserQuery(pagination)
         }
-        throw new Error('Not implemented')
+        const query = User.find(filter).sort({ last_active: -1 })
+        const skip = pagination.pageSize * (pagination.currentPage - 1)
+        query.skip(skip).limit(pagination.pageSize)
+        const [docs, total] = await Promise.all([
+            query.exec(),
+            User.countDocuments(filter)
+        ])
+        pagination.length = total
+        return {
+            pagination: pagination,
+            items: docs.map((doc) => doc.toUser())
+        }
     },
-    getByUserName: function (username: string): Promise<user> {
-        throw new Error('Not implemented')
-    },
-    updateProfile: function (newprofile: _updateProfile, user_id: string): Promise<user> {
-        throw new Error('Not implemented')
+    // getByUserName: async function (username: string): Promise<user> {
+    //     const user = await User.findOne({ username }).exec()
+    //     if (user)
+    //         return user.toUser()
+    //     throw new Error(`username: "${username}"not found`)
+    // },
+    updateProfile: async function (newprofile: updateProfile, user_id: string): Promise<user> {
+      const user = await User.findByIdAndUpdate(user_id, { $set: newprofile },{new: true, runValidators: true})
+      if(user)
+        return user.toUser()
+        throw new Error('Something went wrong, try again later')
     }
 }

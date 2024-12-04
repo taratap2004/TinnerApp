@@ -6,6 +6,11 @@ export const QueryHelper = {
 
     parseUserQuery: function (query: userPagination): mongoose.FilterQuery<IUserDocument>[] {
         const filter: mongoose.FilterQuery<IUserDocument>[] = []
+        if (query.gender && query.gender !== 'all') {   
+            const regEx = new RegExp(`\\b${query.gender.trim()}`, 'i')
+            const _filter = { gender: { $regex: regEx } }
+            filter.push(_filter)
+        }
 
         if (query.username) {
             const regEx = new RegExp(query.username.trim(), 'i') // i = case-insensitive
@@ -34,7 +39,7 @@ export const QueryHelper = {
         }
         if (age_filter.$gte || age_filter.$lte)
             filter.push({ date_of_birth: age_filter })
-
+        
         return filter
     },
 
