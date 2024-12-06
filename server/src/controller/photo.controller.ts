@@ -9,7 +9,7 @@ export const PhotoController = new Elysia({
         const filePath = `public/uploads/${filename}`
         const buffer = await imgFile.arrayBuffer()
         await Bun.write(filePath, buffer)
-        return `http://localhost:8000/img/${filename}`
+        return `https://localhost:8000/img/${filename}`
     }, {
         detail: { summary: 'Upload photo', },
         body: t.Object({
