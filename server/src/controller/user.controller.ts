@@ -31,7 +31,7 @@ export const UserController = new Elysia({
 
     })
 
-    .patch('/', async ({ body, set,Auth }) => {
+    .patch('/', async ({ body, set, Auth }) => {
         try {
             const user_id = (Auth.payload as AuthPayload).id
             await UserService.updateProfile(body, user_id)
