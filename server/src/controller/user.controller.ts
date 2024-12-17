@@ -35,7 +35,7 @@ export const UserController = new Elysia({
         try {
             const user_id = (Auth.payload as AuthPayload).id
             await UserService.updateProfile(body, user_id)
-            set.status = 204
+            set.status = 204 // No Content
         } catch (error) {
             set.status = 400 // Bad Request
             if (error instanceof Error)
