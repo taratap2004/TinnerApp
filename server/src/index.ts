@@ -9,6 +9,7 @@ import { AccountController } from "./controller/account.controller"
 import { UserController } from "./controller/user.controller"
 import staticPlugin from "@elysiajs/static"
 import { PhotoController } from "./controller/photo.controller"
+import { LikeController } from "./controller/like.controller"
 
 
 MongoDB.connect()
@@ -20,12 +21,13 @@ const app = new Elysia()
     assets: "public/uploads",
     prefix: "img"
   }))
+  .use(LikeController)
   .use(cors())
   .use(jwtConfig)
   .use(swaggerConfig)
-  //.use(example)
   .use(AccountController)
   .use(UserController)
+
   .listen({
     port: Bun.env.PORT || 8000,
     tls: tlsConfig
