@@ -40,11 +40,22 @@ export const PhotoService = {
     },
 
 
-    get: async function (user_id: string): Promise<photo[]> {
-        throw new Error('Not implemented')
+    getPhotos: async function (user_id: string): Promise<photo[]> {
+        const photoDocs = await Photo.find({ user: user_id }).exec()
+        const photos = photoDocs.map(doc => doc.toPhoto())
+        return photos
     },
     delete: async function (photo_id: string): Promise<boolean> {
-        throw new Error('Not implemented')
+        const doc = await Photo.findByIdAndDelete(photo_id).exec()
+        if (!doc)
+            throw new Error(`photo${photo_id} not existing`)
+        await User.findByIdAndUpdate(doc.user, {
+            $pull: { photos: photo_id }
+        })
+        await Photo.findByIdAndDelete(photo_id)
+        await Cloudinary.uploader.destroy(doc.public_id)
+
+        return true
     },
     setAvatar: async function (photo_id: string, user_id: string): Promise<boolean> {
         throw new Error('Not implemented')
