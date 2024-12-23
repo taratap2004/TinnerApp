@@ -18,7 +18,7 @@ export const LikeController = new Elysia({
             set.status = 204 // No Content
         } catch (error) {
             set.status = 400 // Bad Request
-            throw error
+            throw (error)
         }
     }, {
         detail: { summary: "Toggle Like" },
