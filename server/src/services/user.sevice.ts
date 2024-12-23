@@ -16,7 +16,7 @@ export const UserService = {
         const query = User.find(filter).sort({ last_active: -1 })
         const skip = pagination.pageSize * (pagination.currentPage - 1)
         query.skip(skip).limit(pagination.pageSize)
-            .populate('photos')
+            .populate("photos")
 
         const [docs, total] = await Promise.all([
             query.exec(),

@@ -43,7 +43,7 @@ export const UserDto = new Elysia().model({
     updateProfile: _updateProfile,
     users: _userPaginator,
     user: _user,
-    target_id: t.Object({ target_id: t.String() })
+    target_id: t.Object({ target_id: t.String() }),
 })
 
 

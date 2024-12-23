@@ -16,18 +16,19 @@ MongoDB.connect()
 
 
 const app = new Elysia()
-  .use(PhotoController)
-  .use(staticPlugin({
-    assets: "public/uploads",
-    prefix: "img"
-  }))
-  .use(LikeController)
+
   .use(cors())
   .use(jwtConfig)
   .use(swaggerConfig)
   .use(AccountController)
   .use(UserController)
+  .use(LikeController)
+  .use(PhotoController)
 
+  .use(staticPlugin({
+    assets: "public/uploads",
+    prefix: "img"
+  }))
   .listen({
     port: Bun.env.PORT || 8000,
     tls: tlsConfig
