@@ -11,6 +11,10 @@ export const routes: Routes = [
         loadComponent: () => import('./login/login.component').then(c => c.LoginComponent)
     },
     {
+        path: 'members',
+        loadComponent: () => import('./member/member.component').then(c => c.MemberComponent)
+    },
+    {
         path: 'server-error',
         loadComponent: () => import('./server-error/server-error.component').then(c => c.ServerErrorComponent)
     },
