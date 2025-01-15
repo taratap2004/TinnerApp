@@ -51,22 +51,22 @@
             <mat-datepicker-toggle [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
         </mat-form-field>
-<div>
-    <label class="example-margin">Gender:</label>
-        <mat-radio-group formControlName="gender">
-        <mat-radio-button class="example-margin" value="male">Male</mat-radio-button>
-        <mat-radio-button class="example-margin" value="female">Female</mat-radio-button>
-        <mat-radio-button class="example-margin" value="all">LGTBQ+</mat-radio-button>
-    </mat-radio-group>
-</div>
-<div>
-    <label class="example-margin">Looking For:</label>
-        <mat-radio-group formControlName="looking_for">
-        <mat-radio-button class="example-margin" value="male">Male</mat-radio-button>
-        <mat-radio-button class="example-margin" value="female">Female</mat-radio-button>
-     <mat-radio-button class="example-margin" value="all">LGTBQ+</mat-radio-button>
-    </mat-radio-group>
-</div>
+        <div>
+            <label class="example-margin">Gender:</label>
+            <mat-radio-group formControlName="gender">
+            <mat-radio-button class="example-margin" value="male">Male</mat-radio-button>
+            <mat-radio-button class="example-margin" value="female">Female</mat-radio-button>
+            <mat-radio-button class="example-margin" value="all">LGTBQ+</mat-radio-button>
+            </mat-radio-group>
+        </div>
+        <div>
+            <label class="example-margin">Looking For:</label>
+            <mat-radio-group formControlName="looking_for">
+            <mat-radio-button class="example-margin" value="male">Male</mat-radio-button>
+            <mat-radio-button class="example-margin" value="female">Female</mat-radio-button>
+            <mat-radio-button class="example-margin" value="all">LGTBQ+</mat-radio-button>
+            </mat-radio-group>
+        </div>
 }
 
         <button mat-raised-button [disabled]="form.invalid">
