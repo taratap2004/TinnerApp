@@ -47,8 +47,8 @@ export const AccountController = new Elysia({
             summary: "Creat new user"
         },
         beforeHandle: ({ body: { username, password }, set }) => {
-            const usernameRegex = /^[A-Za-z][A-Za-z\d]{3,9}$/
-            const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,16}$/
+            const usernameRegex = /^[a-zA-Z0-9_]{3,15}$/
+            const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z0-9\s])(?=\S{8,16}$).*/
             if (!usernameRegex.test(username) || !passwordRegex.test(password)) {
                 set.status = "Bad Request"
                 throw new Error(`Invalid username or password`)

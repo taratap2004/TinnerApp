@@ -6,17 +6,17 @@ export const PasswordValidator = function (minLength: number, maxLength: number)
         if (!password)
             return { required: true }
         else if (password.length < minLength)
-            return { InvalidMinLength: true }
+            return { invalidMinLength: true }
         else if (password.length > maxLength)
-            return { InvalidMaxLength: true }
+            return { invalidMaxLength: true }
         else if (!/[a-z]/.test(password))
-            return { InvalidLowerCase: true }
+            return { invalidLowerCase: true }
         else if (!/[A-Z]/.test(password))
-            return { InvalidUpperCase: true }
+            return { invalidUpperCase: true }
         else if (!/[0-9]/.test(password))
-            return { InvalidNumeric: true }
+            return { invalidNumeric: true }
         else if (!/[!@#$%^&*(),.?":{}|<>]/.test(password))
-            return { InvalidSpecialChar: true }
+            return { invalidSpecialChar: true }
         return null
     }
 }
