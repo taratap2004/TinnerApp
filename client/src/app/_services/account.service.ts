@@ -19,7 +19,7 @@ export class AccountService {
   constructor() {
     this.loadDataFromLocalStorage()
   }
-  // #region login_logout_register
+  //#region login_and_register
   logout() {
     localStorage.removeItem(this._key)
     this.data.set(null)
@@ -39,6 +39,9 @@ export class AccountService {
     }
   }
 
+  //#endregion
+
+  //#region localstorage
   async register(registerData: User): Promise<string> {
     try {
       const url = this._baseApiUrl + 'register'
@@ -52,9 +55,7 @@ export class AccountService {
       return error.error?.message
     }
   }
-  // #endregion
 
-  // #region localStorage
   private saveDataToLocalStorage() {
     const jsonString = JSON.stringify(this.data())
     localStorage.setItem(this._key, jsonString)
@@ -67,24 +68,29 @@ export class AccountService {
       this.data.set(data)
     }
   }
-  // #endregion
 
-  // #region profile
+  //#endregion
+
+  //#region profile
   async updateProfile(user: User): Promise<boolean> {
-    const url = this._baseApiUrl + 'api/user/'
+    const url = environment.baseUrl + 'api/user/'
     try {
       const response = this._http.patch(url, user)
       await firstValueFrom(response)
-      const currentdata = this.data()
-      if (currentdata) {
-        currentdata.user = user
-        this.data.set(currentdata)
+      const currentData = this.data()
+      if (currentData) {
+        currentData.user = user
+        this.data.set(currentData)
         this.saveDataToLocalStorage()
       }
+
     } catch (error) {
       return false
+
+
     }
     return true
+
   }
-  // #endregion
+  //#endregion
 }
