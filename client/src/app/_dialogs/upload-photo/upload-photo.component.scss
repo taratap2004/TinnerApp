@@ -1,0 +1,34 @@
+input[type="file"] {
+    visibility: hidden;
+}
+
+.content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+
+    .img-preveiw {
+        width: 25rem;
+        margin: 0;
+
+        img {
+            width: 100%;
+        }
+
+    }
+
+    .erorr-message {
+        color: rgb(255, 5, 5) (219, 10, 10, 0, 0.822);
+        font-size: medium;
+    }
+}
+
+mat-dialog-content {
+    margin: 0;
+    padding: 0;
+    padding-bottom: 1em;
+}

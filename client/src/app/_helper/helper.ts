@@ -4,7 +4,7 @@ const defaultAvatar = '/assets/DefaultAvatar.jpg'
 const defaultImage = '/assets/imagenotfound.jpg'
 function getAvatar(user: User): string {
     if (user.photos) {
-        const avatar = user.photos.find(p => p.is_avatar === true)
+        const avatar = user.photos.find(p => p.is_avartar === true)
         if (avatar)
             return avatar.url
     }
