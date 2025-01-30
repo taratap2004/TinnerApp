@@ -9,9 +9,9 @@
           </mat-card-header>
           <img mat-card-image src="{{photo.url}}" alt="photo of {{user().display_name}}" class="img-thumb">
           <mat-card-actions align="end">
-            <p *ngIf="photo.is_avartar" class="avatar"><mat-icon>verified</mat-icon>Avatar</p>
+            <p *ngIf="photo.is_avartar" class="avartar"><mat-icon>verified</mat-icon>Avartar</p>
             @if(photo.is_avartar === false){
-                <button class="set-avatar" mat-button (click)="setAvatar(photo.id)">Set as Avatar</button>
+                <button class="set-avartar" mat-button (click)="setAvartar(photo.id)">Set as Avatar</button>
                 <button class="deletePhoto" mat-button (click)="deletePhoto(photo.id)">Delete</button>
             }
           </mat-card-actions>

@@ -47,7 +47,7 @@ export class PhotoComponent {
   deletePhoto(photo_id: string) {
     this.accountService.deletePhoto(photo_id)
   }
-  setAvatar(photo_id: string) {
+  setAvartar(photo_id: string) {
     this.accountService.setAvatar(photo_id)
   }
 
