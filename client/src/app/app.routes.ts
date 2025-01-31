@@ -8,10 +8,6 @@ export const routes: Routes = [
         component: HomeComponent
     },
     {
-        path: 'login',
-        loadComponent: () => import('./login/login.component').then(c => c.LoginComponent)
-    },
-    {
         path: '',
         runGuardsAndResolvers: 'always',
         canActivate: [authGuard],
@@ -26,6 +22,10 @@ export const routes: Routes = [
                 loadComponent: () => import('./profile/profile.component').then(c => c.ProfileComponent)
             }
         ]
+    },
+    {
+        path: 'login',
+        loadComponent: () => import('./login/login.component').then(c => c.LoginComponent)
     },
     {
         path: 'server-error',
