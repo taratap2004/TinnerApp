@@ -4,7 +4,8 @@ import { environment } from '../../environments/environment'
 import { default_paginator, Paginator, UserQueryPagination } from '../_models/pagination'
 import { User } from '../_models/user'
 import { cacheManager } from '../_helper/cache'
-import { parseQuery } from '../_helper/helper'
+import { parseQuery, parseUserPhoto } from '../_helper/helper'
+import { firstValueFrom } from 'rxjs'
 
 
 type dataCategory = 'members' | 'follower' | 'following'
@@ -15,6 +16,7 @@ export class MemberService {
   private http = inject(HttpClient);
   private url = environment.baseUrl + 'api/'
   paginator = signal<Paginator<UserQueryPagination, User>>(default_paginator)
+  activeRoute: any
 
   private getData(category: dataCategory) {
     const pagination = this.paginator().pagination
@@ -40,4 +42,24 @@ export class MemberService {
   getMembers() {
     this.getData('members')
   }
-}
+
+  async getMemberByUsername(username: string): Promise<User | undefined> {
+    const member = this.paginator().items.find(obg => obg.username === username)
+    if (member) {
+      console.log('get from cacghe')
+      return member
+
+    } else {
+      console.log('get from api')
+      try {
+        const url = this.url + 'user/' + username
+        const _member = await firstValueFrom(this.http.get<User>(url))
+        return parseUserPhoto(_member)
+      } catch (error) {
+        console.log('Get Member Error: ', error)
+
+      }
+    }
+    return undefined
+  }
+} 
