@@ -26,7 +26,6 @@ export const UserController = new Elysia({
         return UserService.getByUserName(username)
     }, {
         detail: { summary: "Get User By Username" },
-        // query: t.Object({ username: t.String() }),
         response: "user",
         isSignIn: true,
     })
