@@ -1,5 +1,6 @@
 .drawer-container {
-    height: calc(100vh - 100px);
+    height: calc(100vh - 70px);
+    // border: 1px solid red;
 
     .sidenav-content {
         display: flex;
@@ -11,12 +12,12 @@
     }
 
     .sidenav {
-        width: 80%;
+        width: 95%;
         padding-top: 1em;
         padding-left: 2em;
 
         button {
-            margin-top: 1em;
+            margin-top: 0.5em;
         }
     }
 
@@ -25,7 +26,7 @@
     }
 
     mat-card {
-        width: 95%;
+        width: 98%;
         height: 100%;
     }
 
@@ -42,8 +43,6 @@
     .gallery {
         margin-right: 2em;
     }
-
-
 }
 
 .chatter {
@@ -54,12 +53,12 @@
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1000;
-    background-color: rgba(53, 46, 46, 0);
+    background-color: rgba(66, 56, 56, 0.685);
 
-    .chatter-container {
-        background-color: rgba(255, 255, 255, 0.521);
+    .chat-container {
+        background-color: rgba(255, 255, 255, 0.425);
         border-radius: 5px;
-        box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.164);
+        box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.315);
         overflow: hidden;
         padding: 1em;
         position: relative;
@@ -69,34 +68,6 @@
         height: calc(100vh - 250px);
         max-width: 800px;
         width: calc(100% - 5em);
-
-
-        .chat-title {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 0;
-            color: rgb(67, 67, 245);
-
-            div {
-                margin-left: 5px;
-            }
-
-            button {
-                margin: 0;
-                background-color: rgba(0, 0, 0, 0);
-                cursor: pointer;
-                border: none;
-
-                :hover {
-                    color: rgb(134, 134, 255);
-                }
-            }
-
-            .get-more-msg {
-                cursor: pointer;
-            }
-        }
 
         .chat {
             display: flex;
@@ -108,11 +79,11 @@
             padding: 0 10px 0 10px;
             margin: 0;
             height: 100%;
-            max-height: calc(100% - 350px);
+            max-height: calc(100vh - 350px);
             width: calc(100% - 20px);
             overflow-y: auto;
 
-            lo {
+            li {
                 width: 98%;
                 margin-top: 30px;
                 flex-direction: column;
@@ -121,51 +92,82 @@
             }
         }
 
-        .input-container {
-            position: relative;
-            width: calc(100% - 50px);
-            margin-left: 1em;
-            margin-top: 0.5em;
-            padding: 0 10px 0 10px;
-            background-color: white;
-            border: 2px solid rgba(255, 255, 255, 0.151);
-            border-radius: 5px;
 
-            input {
-                font-size: medium;
-                width: calc(100% - 20px);
-                padding-right: 50px;
-                outline: none;
-                box-sizing: border-box;
-                overflow: hidden;
-                white-space: nowrap;
-                text-overflow: ellipsis;
-                border: none;
-            }
-
-            button {
-                position: absolute;
-                right: 5px;
-                top: 50%;
-                transform: translateY(-50%);
-                background-color: rgb(38, 0, 255);
-                color: white;
-                border: none;
-                border-radius: 5px;
-                padding: 10px 15px;
-                cursor: pointer;
-
-                :hover {
-                    background-color: rgb(0, 0, 95);
-                }
-            }
-        }
 
         .chat {
             scrollbar-width: thin;
-            scrollbar-color: rgba(17, 0, 255, 0.247) rgba(0, 0, 0, 0.158);
-
+            scrollbar-color: #0484da91 rgba(0, 0, 0, 0.13);
         }
+    }
+}
+
+.chat-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    color: #0484da;
+
+    div {
+        margin-left: 5px;
+    }
+
+    button {
+        margin: 0;
+        background-color: #fdfdfd00;
+        cursor: pointer;
+        border: none;
+
+        :hover {
+            color: #77b5f8;
+        }
+    }
+
+    .get-more-msg {
+        cursor: pointer;
+    }
+}
+
+.input-container {
+    position: relative;
+    width: calc(100% - 50px);
+    margin-top: 0.5em;
+    margin-left: 1em;
+    padding: 0 10px 0 10px;
+    background-color: white;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    border: none;
+    height: 45px;
+
+    input {
+        margin-top: 1em;
+        font-size: medium;
+        width: calc(100% - 20px);
+        padding-right: 50px;
+        outline: none;
+        box-sizing: border-box;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        border: none;
+    }
+
+    button {
+        position: absolute;
+        right: 5px;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 15px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #0056b3;
     }
 }
 
@@ -180,20 +182,21 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgba(19, 2, 95, 0.26);
+    background-color: #0057b39c;
+
     text-align: center;
     border-radius: 5px;
-    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.089);
+    box-shadow: 0 2px 10px rgba(10, 10, 10, 0.226);
     z-index: 2000;
 
     h1 {
-        color: rgb(255, 64, 64);
+        color: #ee4937c9;
         font-size: 3em;
         margin: 0;
     }
 
     h3 {
-        color: rgb(255, 255, 255);
+        color: white;
         font-size: 1.5em;
         margin: 10px 0 0 0;
     }
