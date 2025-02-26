@@ -74,9 +74,9 @@ export const MessageController = new Elysia({
                 })
                 if (isRecipientConnected(groupName, msg.recipient)) {
                     await newMessage.save()
-                    const msgOgj = newMessage.toMessage()
-                    ws.publish(groupName, msgOgj)
-                    ws.send(msgOgj)
+                    const msgObj = newMessage.toMessage()
+                    ws.publish(groupName, msgObj)
+                    ws.send(msgObj)
                 }
             } catch (error) {
                 ws.send({ sender: 'system', content: 'Something went wrong☠️' })
